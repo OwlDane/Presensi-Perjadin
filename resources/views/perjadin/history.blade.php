@@ -3,10 +3,74 @@
 @section('title', 'Riwayat Perjalanan Dinas')
 
 @section('content')
+<style>
+    .header-with-button {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+        gap: 1rem;
+    }
+
+    .header-with-button h1 {
+        margin: 0;
+        flex: 1;
+    }
+
+    .btn-form-baru {
+        padding: 0.75rem 1.5rem;
+        background-color: #3498db;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        text-decoration: none;
+        cursor: pointer;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        white-space: nowrap;
+    }
+
+    .btn-form-baru:hover {
+        background-color: #2980b9;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    @media (max-width: 768px) {
+        .header-with-button {
+            flex-direction: column;
+            align-items: stretch;
+            margin-bottom: 1.5rem;
+        }
+
+        .header-with-button h1 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .btn-form-baru {
+            width: 100%;
+            padding: 1rem;
+            font-size: 1rem;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            box-shadow: 0 2px 8px rgba(52, 152, 219, 0.3);
+        }
+
+        .btn-form-baru:active {
+            transform: translateY(0);
+            box-shadow: 0 1px 4px rgba(52, 152, 219, 0.2);
+        }
+    }
+</style>
+
 <div class="card">
-    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+    <div class="header-with-button">
         <h1>📋 Riwayat Perjalanan Dinas</h1>
-        <a href="{{ route('perjadin.create') }}" class="btn btn-primary">+ Form Baru</a>
+        <a href="{{ route('perjadin.create') }}" class="btn-form-baru">📝 Form Baru</a>
     </div>
 
     @if ($forms->count() > 0)
@@ -89,9 +153,17 @@
         </div>
     @else
         <div style="text-align: center; padding: 3rem;">
-            <p style="font-size: 1.1rem; color: #7f8c8d; margin-bottom: 1rem;">Belum ada form perjalanan dinas</p>
-            <a href="{{ route('perjadin.create') }}" class="btn btn-primary">Buat Form Baru</a>
+            <p style="font-size: 1.1rem; color: #7f8c8d; margin-bottom: 2rem;">Belum ada rekapan perjalanan dinas</p>
+            <a href="{{ route('perjadin.create') }}" class="btn-form-baru" style="display: inline-flex; width: auto;">📝 Buat Form Baru</a>
         </div>
     @endif
 </div>
+
+<style>
+    @media (max-width: 768px) {
+        .card {
+            padding: 1.5rem;
+        }
+    }
+</style>
 @endsection
