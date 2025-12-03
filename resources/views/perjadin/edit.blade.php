@@ -3,6 +3,36 @@
 @section('title', 'Edit Perjalanan Dinas')
 
 @section('content')
+<style>
+    .disabled-input {
+        background-color: #f8f9fa !important;
+        border: 1px solid #e9ecef !important;
+        color: #6c757d !important;
+        cursor: not-allowed !important;
+        opacity: 0.8 !important;
+        font-weight: 500 !important;
+    }
+    
+    .disabled-input:focus {
+        outline: none !important;
+        box-shadow: none !important;
+        border-color: #e9ecef !important;
+    }
+    
+    .form-group label {
+        font-weight: 600;
+        color: #495057;
+        margin-bottom: 0.5rem;
+    }
+    
+    @media (max-width: 768px) {
+        .disabled-input {
+            font-size: 0.9rem;
+            padding: 0.6rem;
+        }
+    }
+</style>
+
 <div class="card">
     <h1 style="margin-bottom: 2rem;">✏️ Edit Perjalanan Dinas</h1>
 
@@ -16,11 +46,11 @@
             <div class="form-row">
                 <div class="form-group">
                     <label>Nama</label>
-                    <input type="text" value="{{ $perjadianForm->nama }}" disabled>
+                    <input type="text" value="{{ $perjadianForm->nama }}" disabled class="disabled-input" readonly>
                 </div>
                 <div class="form-group">
                     <label>NIP</label>
-                    <input type="text" value="{{ $perjadianForm->nip }}" disabled>
+                    <input type="text" value="{{ $perjadianForm->nip }}" disabled class="disabled-input" readonly>
                 </div>
             </div>
         </fieldset>
