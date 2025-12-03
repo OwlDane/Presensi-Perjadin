@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Resources\PerjadianForms\Tables;
+namespace App\Filament\Resources\PerjadinForms\Tables;
 
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;

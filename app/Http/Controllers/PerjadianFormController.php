@@ -77,7 +77,7 @@ class PerjadianFormController extends Controller
      */
     public function history()
     {
-        $forms = auth()->user()->perjadianForms()
+        $forms = auth()->user()->perjadinForms()
             ->latest()
             ->paginate(10);
 

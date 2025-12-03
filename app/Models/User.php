@@ -48,9 +48,9 @@ class User extends Authenticatable
     }
 
     /**
-     * Get the perjadian forms for the user.
+     * Get the perjadin forms for the user.
      */
-    public function perjadianForms()
+    public function perjadinForms()
     {
         return $this->hasMany(PerjadianForm::class);
     }

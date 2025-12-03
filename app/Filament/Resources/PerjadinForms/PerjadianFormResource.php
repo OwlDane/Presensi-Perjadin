@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Filament\Resources\PerjadianForms;
+namespace App\Filament\Resources\PerjadinForms;
 
-use App\Filament\Resources\PerjadianForms\Pages\CreatePerjadianForm;
-use App\Filament\Resources\PerjadianForms\Pages\EditPerjadianForm;
-use App\Filament\Resources\PerjadianForms\Pages\ListPerjadianForms;
-use App\Filament\Resources\PerjadianForms\Schemas\PerjadianFormForm;
-use App\Filament\Resources\PerjadianForms\Tables\PerjadianFormsTable;
+use App\Filament\Resources\PerjadinForms\Pages\CreatePerjadianForm;
+use App\Filament\Resources\PerjadinForms\Pages\EditPerjadianForm;
+use App\Filament\Resources\PerjadinForms\Pages\ListPerjadianForms;
+use App\Filament\Resources\PerjadinForms\Schemas\PerjadianFormForm;
+use App\Filament\Resources\PerjadinForms\Tables\PerjadianFormsTable;
 use App\Models\PerjadianForm;
 use BackedEnum;
 use Filament\Resources\Resource;

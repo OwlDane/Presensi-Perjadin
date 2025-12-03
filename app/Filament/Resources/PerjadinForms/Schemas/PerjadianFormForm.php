@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Resources\PerjadianForms\Schemas;
+namespace App\Filament\Resources\PerjadinForms\Schemas;
 
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\FileUpload;
