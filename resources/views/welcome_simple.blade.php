@@ -78,6 +78,78 @@
             background-color: var(--color-gray-300);
         }
 
+        .login-form {
+            background: var(--color-primary-bg);
+            padding: var(--spacing-2xl);
+            border-radius: var(--radius-md);
+            margin-top: var(--spacing-2xl);
+            text-align: left;
+        }
+
+        .form-group {
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: var(--spacing-sm);
+            color: var(--color-gray-700);
+            font-weight: 500;
+            font-size: var(--font-size-base);
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: var(--spacing-md);
+            border: 1px solid var(--color-gray-300);
+            border-radius: var(--radius-md);
+            font-size: var(--font-size-base);
+            transition: all 0.2s ease;
+            box-sizing: border-box;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .form-errors {
+            background-color: #fee;
+            border: 1px solid #fcc;
+            color: #c33;
+            padding: var(--spacing-md);
+            border-radius: var(--radius-md);
+            margin-bottom: var(--spacing-lg);
+            font-size: var(--font-size-sm);
+        }
+
+        .form-errors ul {
+            margin: 0;
+            padding-left: var(--spacing-lg);
+        }
+
+        .form-errors li {
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .login-button {
+            width: 100%;
+            padding: var(--spacing-md);
+            background-color: var(--color-primary);
+            color: var(--color-white);
+            border: none;
+            border-radius: var(--radius-md);
+            font-size: var(--font-size-base);
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .login-button:hover {
+            background-color: var(--color-primary-light);
+        }
+
         .features {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
@@ -160,17 +232,58 @@
             <p>Sistem Manajemen Perjalanan Dinas ASN/Guru</p>
         </div>
 
-        <div class="button-group">
-            @if (auth()->check())
+        @if (auth()->check())
+            <div class="button-group">
                 <a href="{{ route('perjadin.create') }}" class="btn btn-primary">➕ Buat Form Baru</a>
                 <a href="{{ route('perjadin.history') }}" class="btn btn-secondary">📚 Lihat Riwayat</a>
                 @if(auth()->user()->role === 'admin')
                     <a href="/admin" class="btn btn-secondary">⚙️ Admin Dashboard</a>
                 @endif
-            @else
-                <a href="{{ route('login') }}" class="btn btn-primary">🔐 Login</a>
-            @endif
-        </div>
+            </div>
+        @else
+            <div class="login-form">
+                @if ($errors->any())
+                    <div class="form-errors">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
+                <form action="{{ route('login') }}" method="POST">
+                    @csrf
+                    
+                    <div class="form-group">
+                        <label for="nip">NIP</label>
+                        <input 
+                            type="text" 
+                            id="nip" 
+                            name="nip" 
+                            value="{{ old('nip') }}"
+                            placeholder="Masukkan NIP Anda"
+                            required
+                            autofocus
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="name">Nama</label>
+                        <input 
+                            type="text" 
+                            id="name" 
+                            name="name" 
+                            value="{{ old('name') }}"
+                            placeholder="Masukkan Nama Anda"
+                            required
+                        >
+                    </div>
+
+                    <button type="submit" class="login-button">🔐 Login</button>
+                </form>
+            </div>
+        @endif
 
         <div class="features">
             <div class="feature">
