@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('perjadian_forms', function (Blueprint $table) {
+        Schema::table('perjadin_forms', function (Blueprint $table) {
             $table->json('pengikut')->nullable()->after('alamat_kegiatan');
         });
     }
@@ -21,7 +21,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('perjadian_forms', function (Blueprint $table) {
+        Schema::table('perjadin_forms', function (Blueprint $table) {
             $table->dropColumn('pengikut');
         });
     }

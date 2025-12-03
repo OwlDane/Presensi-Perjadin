@@ -10,7 +10,7 @@ use Filament\Tables\Columns\BadgeColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 
-class PerjadianFormsTable
+class PerjadinFormsTable
 {
     public static function configure(Table $table): Table
     {

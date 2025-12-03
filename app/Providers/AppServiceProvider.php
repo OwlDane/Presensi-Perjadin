@@ -2,8 +2,8 @@
 
 namespace App\Providers;
 
-use App\Models\PerjadianForm;
-use App\Policies\PerjadianFormPolicy;
+use App\Models\PerjadinForm;
+use App\Policies\PerjadinFormPolicy;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -14,7 +14,7 @@ class AppServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        PerjadianForm::class => PerjadianFormPolicy::class,
+        PerjadinForm::class => PerjadinFormPolicy::class,
     ];
 
     /**

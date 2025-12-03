@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\PerjadianForm;
+use App\Models\PerjadinForm;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
@@ -30,7 +30,7 @@ class ExportController extends Controller
         }
 
         // Get all forms
-        $forms = PerjadianForm::with('user')->latest()->get();
+        $forms = PerjadinForm::with('user')->latest()->get();
 
         // Create CSV response
         $response = new StreamedResponse(function () use ($forms) {
@@ -80,7 +80,7 @@ class ExportController extends Controller
 
         // Set headers
         $response->headers->set('Content-Type', 'text/csv; charset=utf-8');
-        $response->headers->set('Content-Disposition', 'attachment; filename="perjadian-forms-'.date('Y-m-d').'.csv"');
+        $response->headers->set('Content-Disposition', 'attachment; filename="perjadin-forms-'.date('Y-m-d').'.csv"');
 
         return $response;
     }

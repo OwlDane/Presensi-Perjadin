@@ -11,7 +11,7 @@ use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
 
-class PerjadianFormForm
+class PerjadinFormForm
 {
     public static function configure(Schema $schema): Schema
     {

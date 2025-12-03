@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('perjadian_forms', function (Blueprint $table) {
+        Schema::table('perjadin_forms', function (Blueprint $table) {
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->after('id');
             $table->string('nama');
             $table->string('nip');
@@ -34,7 +34,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('perjadian_forms', function (Blueprint $table) {
+        Schema::table('perjadin_forms', function (Blueprint $table) {
             $table->dropForeignKeyIfExists(['user_id']);
             $table->dropColumn([
                 'user_id',

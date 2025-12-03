@@ -2,10 +2,10 @@
 
 namespace App\Policies;
 
-use App\Models\PerjadianForm;
+use App\Models\PerjadinForm;
 use App\Models\User;
 
-class PerjadianFormPolicy
+class PerjadinFormPolicy
 {
     /**
      * Determine whether the user can view any models.

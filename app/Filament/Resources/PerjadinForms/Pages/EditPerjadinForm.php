@@ -2,13 +2,13 @@
 
 namespace App\Filament\Resources\PerjadinForms\Pages;
 
-use App\Filament\Resources\PerjadinForms\PerjadianFormResource;
+use App\Filament\Resources\PerjadinForms\PerjadinFormResource;
 use Filament\Actions\DeleteAction;
 use Filament\Resources\Pages\EditRecord;
 
-class EditPerjadianForm extends EditRecord
+class EditPerjadinForm extends EditRecord
 {
-    protected static string $resource = PerjadianFormResource::class;
+    protected static string $resource = PerjadinFormResource::class;
 
     protected function getHeaderActions(): array
     {

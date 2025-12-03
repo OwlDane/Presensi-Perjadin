@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\PerjadianForm;
+use App\Models\PerjadinForm;
 use Illuminate\Http\Request;
 
 /**
- * PerjadianFormController
+ * PerjadinFormController
  * 
  * Menangani CRUD operations untuk formulir perjalanan dinas
  * Termasuk create, read, update, delete, dan history
  */
-class PerjadianFormController extends Controller
+class PerjadinFormController extends Controller
 {
     /**
      * Menampilkan halaman form perjalanan dinas
@@ -54,7 +54,7 @@ class PerjadianFormController extends Controller
         // Upload file jika ada
         if ($request->hasFile('surat_kegiatan')) {
             $validated['surat_kegiatan'] = $request->file('surat_kegiatan')
-                ->store('perjadian-forms', 'public');
+                ->store('perjadin-forms', 'public');
         }
 
         // Set data user dan status
@@ -67,7 +67,7 @@ class PerjadianFormController extends Controller
         $validated['pengikut'] = json_encode($request->input('followers', []));
 
         // Simpan ke database
-        PerjadianForm::create($validated);
+        PerjadinForm::create($validated);
 
         return redirect()->route('perjadin.history')
             ->with('success', 'Form berhasil disubmit!');
@@ -94,14 +94,14 @@ class PerjadianFormController extends Controller
      * 
      * Hanya user yang memiliki form atau admin yang dapat melihat
      * 
-     * @param  \App\Models\PerjadianForm  $perjadianForm
+     * @param  \App\Models\PerjadinForm  $perjadinForm
      * @return \Illuminate\View\View
      */
-    public function show(PerjadianForm $perjadianForm)
+    public function show(PerjadinForm $perjadinForm)
     {
-        $this->authorize('view', $perjadianForm);
+        $this->authorize('view', $perjadinForm);
 
-        return view('perjadin.show', compact('perjadianForm'));
+        return view('perjadin.show', compact('perjadinForm'));
     }
 
     /**
@@ -109,14 +109,14 @@ class PerjadianFormController extends Controller
      * 
      * Hanya user yang memiliki form dengan status draft yang dapat edit
      * 
-     * @param  \App\Models\PerjadianForm  $perjadianForm
+     * @param  \App\Models\PerjadinForm  $perjadinForm
      * @return \Illuminate\View\View
      */
-    public function edit(PerjadianForm $perjadianForm)
+    public function edit(PerjadinForm $perjadinForm)
     {
-        $this->authorize('update', $perjadianForm);
+        $this->authorize('update', $perjadinForm);
 
-        return view('perjadin.edit', compact('perjadianForm'));
+        return view('perjadin.edit', compact('perjadinForm'));
     }
 
     /**
@@ -125,12 +125,12 @@ class PerjadianFormController extends Controller
      * Hanya user yang memiliki form dengan status draft yang dapat update
      * 
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\PerjadianForm  $perjadianForm
+     * @param  \App\Models\PerjadinForm  $perjadinForm
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, PerjadianForm $perjadianForm)
+    public function update(Request $request, PerjadinForm $perjadinForm)
     {
-        $this->authorize('update', $perjadianForm);
+        $this->authorize('update', $perjadinForm);
 
         // Validasi input
         $validated = $request->validate([
@@ -150,14 +150,14 @@ class PerjadianFormController extends Controller
         // Upload file jika ada
         if ($request->hasFile('surat_kegiatan')) {
             $validated['surat_kegiatan'] = $request->file('surat_kegiatan')
-                ->store('perjadian-forms', 'public');
+                ->store('perjadin-forms', 'public');
         }
 
         // Simpan pengikut sebagai JSON
         $validated['pengikut'] = json_encode($request->input('followers', []));
 
         // Update ke database
-        $perjadianForm->update($validated);
+        $perjadinForm->update($validated);
 
         return redirect()->route('perjadin.history')
             ->with('success', 'Form berhasil diupdate!');
@@ -168,14 +168,14 @@ class PerjadianFormController extends Controller
      * 
      * Hanya user yang memiliki form dengan status draft yang dapat hapus
      * 
-     * @param  \App\Models\PerjadianForm  $perjadianForm
+     * @param  \App\Models\PerjadinForm  $perjadinForm
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy(PerjadianForm $perjadianForm)
+    public function destroy(PerjadinForm $perjadinForm)
     {
-        $this->authorize('delete', $perjadianForm);
+        $this->authorize('delete', $perjadinForm);
 
-        $perjadianForm->delete();
+        $perjadinForm->delete();
 
         return redirect()->route('perjadin.history')
             ->with('success', 'Form berhasil dihapus!');

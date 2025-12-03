@@ -52,6 +52,6 @@ class User extends Authenticatable
      */
     public function perjadinForms()
     {
-        return $this->hasMany(PerjadianForm::class);
+        return $this->hasMany(PerjadinForm::class);
     }
 }

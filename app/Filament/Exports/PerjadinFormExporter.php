@@ -2,14 +2,14 @@
 
 namespace App\Filament\Exports;
 
-use App\Models\PerjadianForm;
+use App\Models\PerjadinForm;
 use Filament\Actions\Exports\ExportColumn;
 use Filament\Actions\Exports\Exporter;
 use Filament\Actions\Exports\Models\Export;
 
-class PerjadianFormExporter extends Exporter
+class PerjadinFormExporter extends Exporter
 {
-    protected static ?string $model = PerjadianForm::class;
+    protected static ?string $model = PerjadinForm::class;
 
     public static function getColumns(): array
     {

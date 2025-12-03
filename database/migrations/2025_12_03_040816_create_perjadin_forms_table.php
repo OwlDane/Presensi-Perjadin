@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('perjadian_forms', function (Blueprint $table) {
+        Schema::create('perjadin_forms', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
         });
@@ -22,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('perjadian_forms');
+        Schema::dropIfExists('perjadin_forms');
     }
 };

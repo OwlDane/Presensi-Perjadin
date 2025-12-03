@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ExportController;
-use App\Http\Controllers\PerjadianFormController;
+use App\Http\Controllers\PerjadinFormController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -24,11 +24,11 @@ Route::middleware(['auth'])->group(function () {
 
 // User Routes (hanya untuk user biasa)
 Route::middleware('user')->group(function () {
-    Route::get('/perjadin/create', [PerjadianFormController::class, 'create'])->name('perjadin.create');
-    Route::post('/perjadin', [PerjadianFormController::class, 'store'])->name('perjadin.store');
-    Route::get('/perjadin/history', [PerjadianFormController::class, 'history'])->name('perjadin.history');
-    Route::get('/perjadin/{perjadianForm}', [PerjadianFormController::class, 'show'])->name('perjadin.show');
-    Route::get('/perjadin/{perjadianForm}/edit', [PerjadianFormController::class, 'edit'])->name('perjadin.edit');
-    Route::put('/perjadin/{perjadianForm}', [PerjadianFormController::class, 'update'])->name('perjadin.update');
+    Route::get('/perjadin/create', [PerjadinFormController::class, 'create'])->name('perjadin.create');
+    Route::post('/perjadin', [PerjadinFormController::class, 'store'])->name('perjadin.store');
+    Route::get('/perjadin/history', [PerjadinFormController::class, 'history'])->name('perjadin.history');
+    Route::get('/perjadin/{perjadianForm}', [PerjadinFormController::class, 'show'])->name('perjadin.show');
+    Route::get('/perjadin/{perjadianForm}/edit', [PerjadinFormController::class, 'edit'])->name('perjadin.edit');
+    Route::put('/perjadin/{perjadianForm}', [PerjadinFormController::class, 'update'])->name('perjadin.update');
     Route::delete('/perjadin/{perjadianForm}', [PerjadianFormController::class, 'destroy'])->name('perjadin.destroy');
 });

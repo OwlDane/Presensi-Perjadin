@@ -112,10 +112,10 @@
                             </td>
                             <td>
                                 <div class="action-buttons">
-                                    <a href="{{ route('perjadian.show', $form) }}" class="btn btn-primary">Lihat</a>
+                                    <a href="{{ route('perjadin.show', $form) }}" class="btn btn-primary">Lihat</a>
                                     @if ($form->status === 'draft')
-                                        <a href="{{ route('perjadian.edit', $form) }}" class="btn btn-secondary">Edit</a>
-                                        <form action="{{ route('perjadian.destroy', $form) }}" method="POST" style="display: inline;" onsubmit="return confirm('Yakin ingin menghapus?');">
+                                        <a href="{{ route('perjadin.edit', $form) }}" class="btn btn-secondary">Edit</a>
+                                        <form action="{{ route('perjadin.destroy', $form) }}" method="POST" style="display: inline;" onsubmit="return confirm('Yakin ingin menghapus?');">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger">Hapus</button>
