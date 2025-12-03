@@ -162,8 +162,8 @@
 
         <div class="button-group">
             @if (auth()->check())
-                <a href="{{ route('perjadian.create') }}" class="btn btn-primary">➕ Buat Form Baru</a>
-                <a href="{{ route('perjadian.history') }}" class="btn btn-secondary">📚 Lihat Riwayat</a>
+                <a href="{{ route('perjadin.create') }}" class="btn btn-primary">➕ Buat Form Baru</a>
+                <a href="{{ route('perjadin.history') }}" class="btn btn-secondary">📚 Lihat Riwayat</a>
                 @if(auth()->user()->role === 'admin')
                     <a href="/admin" class="btn btn-secondary">⚙️ Admin Dashboard</a>
                 @endif

@@ -58,7 +58,7 @@ class AuthController extends Controller
         Auth::login($user);
 
         // Redirect ke halaman form atau intended URL
-        return redirect()->intended(route('perjadian.create'));
+        return redirect()->intended(route('perjadin.create'));
     }
 
     /**

@@ -20,7 +20,7 @@ class PerjadianFormController extends Controller
      */
     public function create()
     {
-        return view('perjadian.create');
+        return view('perjadin.create');
     }
 
     /**
@@ -64,7 +64,7 @@ class PerjadianFormController extends Controller
         // Simpan ke database
         PerjadianForm::create($validated);
 
-        return redirect()->route('perjadian.history')
+        return redirect()->route('perjadin.history')
             ->with('success', 'Form berhasil disubmit!');
     }
 
@@ -81,7 +81,7 @@ class PerjadianFormController extends Controller
             ->latest()
             ->paginate(10);
 
-        return view('perjadian.history', compact('forms'));
+        return view('perjadin.history', compact('forms'));
     }
 
     /**
@@ -96,7 +96,7 @@ class PerjadianFormController extends Controller
     {
         $this->authorize('view', $perjadianForm);
 
-        return view('perjadian.show', compact('perjadianForm'));
+        return view('perjadin.show', compact('perjadianForm'));
     }
 
     /**
@@ -111,7 +111,7 @@ class PerjadianFormController extends Controller
     {
         $this->authorize('update', $perjadianForm);
 
-        return view('perjadian.edit', compact('perjadianForm'));
+        return view('perjadin.edit', compact('perjadianForm'));
     }
 
     /**
@@ -149,7 +149,7 @@ class PerjadianFormController extends Controller
         // Update ke database
         $perjadianForm->update($validated);
 
-        return redirect()->route('perjadian.history')
+        return redirect()->route('perjadin.history')
             ->with('success', 'Form berhasil diupdate!');
     }
 
@@ -167,7 +167,7 @@ class PerjadianFormController extends Controller
 
         $perjadianForm->delete();
 
-        return redirect()->route('perjadian.history')
+        return redirect()->route('perjadin.history')
             ->with('success', 'Form berhasil dihapus!');
     }
 }

@@ -258,8 +258,8 @@
         </div>
         <div class="nav-links">
             <span>Halo, <strong>{{ auth()->user()->name }}</strong></span>
-            <a href="{{ route('perjadian.create') }}">Form Baru</a>
-            <a href="{{ route('perjadian.history') }}">Riwayat</a>
+            <a href="{{ route('perjadin.create') }}">Form Baru</a>
+            <a href="{{ route('perjadin.history') }}">Riwayat</a>
             @if(auth()->user()->role === 'admin')
                 <a href="/admin" target="_blank">Admin Dashboard</a>
             @endif
