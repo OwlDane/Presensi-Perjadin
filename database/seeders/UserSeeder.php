@@ -13,26 +13,29 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        // Create admin user
+        // Create admin user (login dengan email + password di Filament)
         User::create([
             'name' => 'Admin',
             'nip' => '123456789',
-            'password' => Hash::make('admin'),
+            'email' => 'admin@perjadin.local',
+            'password' => Hash::make('admin123'),
             'role' => 'admin',
         ]);
 
-        // Create test users
+        // Create test users (login dengan NIP + Nama di user page)
         User::create([
             'name' => 'Budi Santoso',
             'nip' => '987654321',
-            'password' => Hash::make('user'),
+            'email' => 'budi@perjadin.local',
+            'password' => Hash::make('password'),
             'role' => 'user',
         ]);
 
         User::create([
             'name' => 'Siti Nurhaliza',
             'nip' => '456789123',
-            'password' => Hash::make('user'),
+            'email' => 'siti@perjadin.local',
+            'password' => Hash::make('password'),
             'role' => 'user',
         ]);
     }
