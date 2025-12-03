@@ -41,6 +41,15 @@
         .navbar .nav-links a:hover {
             color: #3498db;
         }
+        .navbar .nav-links span {
+            color: #ecf0f1;
+            font-weight: 600;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+        }
+        .navbar .nav-links span strong {
+            color: #ffffff;
+            font-weight: 700;
+        }
         .hamburger {
             display: none;
             flex-direction: column;
