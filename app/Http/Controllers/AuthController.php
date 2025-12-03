@@ -28,7 +28,8 @@ class AuthController extends Controller
      * Memproses login request
      * 
      * Validasi NIP dan Nama, kemudian autentikasi user
-     * Jika user ditemukan, redirect ke halaman form perjalanan dinas
+     * User biasa login dengan NIP+Nama, Admin login dengan Email+Password
+     * Jika user ditemukan, redirect ke halaman yang sesuai dengan role
      * Jika tidak, kembali ke halaman login dengan error message
      * 
      * @param  \Illuminate\Http\Request  $request
@@ -54,7 +55,22 @@ class AuthController extends Controller
             ])->onlyInput('nip', 'name');
         }
 
-        // Login user
+        // Cek role dan validasi login method
+        if ($user->role === 'admin') {
+            // Admin tidak boleh login dengan NIP+Nama
+            return back()->withErrors([
+                'login' => 'Admin harus login melalui halaman admin dengan email dan password.',
+            ])->onlyInput('nip', 'name');
+        }
+
+        // User biasa tidak boleh login jika role admin
+        if ($user->role !== 'user') {
+            return back()->withErrors([
+                'login' => 'Akses ditolak. Role tidak valid.',
+            ])->onlyInput('nip', 'name');
+        }
+
+        // Login user biasa
         Auth::login($user);
 
         // Redirect ke halaman form atau intended URL

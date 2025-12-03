@@ -22,8 +22,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/admin/export/forms', [ExportController::class, 'exportForms'])->name('export.forms');
 });
 
-// User Routes
-Route::middleware('auth')->group(function () {
+// User Routes (hanya untuk user biasa)
+Route::middleware('user')->group(function () {
     Route::get('/perjadin/create', [PerjadianFormController::class, 'create'])->name('perjadin.create');
     Route::post('/perjadin', [PerjadianFormController::class, 'store'])->name('perjadin.store');
     Route::get('/perjadin/history', [PerjadianFormController::class, 'history'])->name('perjadin.history');
