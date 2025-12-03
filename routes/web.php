@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ExportController;
 use App\Http\Controllers\PerjadianFormController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,6 +16,11 @@ Route::middleware('guest')->group(function () {
 });
 
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth')->name('logout');
+
+// Admin Export Routes
+Route::middleware(['auth'])->group(function () {
+    Route::get('/admin/export/forms', [ExportController::class, 'exportForms'])->name('export.forms');
+});
 
 // User Routes
 Route::middleware('auth')->group(function () {

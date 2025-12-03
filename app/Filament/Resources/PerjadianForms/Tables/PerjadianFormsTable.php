@@ -2,12 +2,9 @@
 
 namespace App\Filament\Resources\PerjadianForms\Tables;
 
-use App\Filament\Exports\PerjadianFormExporter;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
-use Filament\Tables\Actions\ExportAction;
-use Filament\Tables\Actions\ExportBulkAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\BadgeColumn;
 use Filament\Tables\Filters\SelectFilter;
@@ -85,12 +82,8 @@ class PerjadianFormsTable
             ->recordActions([
                 EditAction::make(),
             ])
-            ->toolbarActions([
-                ExportAction::make()
-                    ->exporter(PerjadianFormExporter::class),
+            ->bulkActions([
                 BulkActionGroup::make([
-                    ExportBulkAction::make()
-                        ->exporter(PerjadianFormExporter::class),
                     DeleteBulkAction::make(),
                 ]),
             ]);
