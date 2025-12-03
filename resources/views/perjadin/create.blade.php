@@ -124,7 +124,7 @@
 
         <div style="display: flex; gap: 1rem; justify-content: center;">
             <button type="submit" class="btn btn-success">Kirim Form</button>
-            <a href="{{ route('perjadian.history') }}" class="btn btn-secondary">Batal</a>
+            <a href="{{ route('perjadin.history') }}" class="btn btn-secondary">Batal</a>
         </div>
     </form>
 </div>

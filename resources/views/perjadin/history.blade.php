@@ -90,7 +90,7 @@
     @else
         <div style="text-align: center; padding: 3rem;">
             <p style="font-size: 1.1rem; color: #7f8c8d; margin-bottom: 1rem;">Belum ada form perjalanan dinas</p>
-            <a href="{{ route('perjadian.create') }}" class="btn btn-primary">Buat Form Baru</a>
+            <a href="{{ route('perjadin.create') }}" class="btn btn-primary">Buat Form Baru</a>
         </div>
     @endif
 </div>
