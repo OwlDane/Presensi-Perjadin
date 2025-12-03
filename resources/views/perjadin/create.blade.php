@@ -6,7 +6,7 @@
 <div class="card">
     <h1 style="margin-bottom: 2rem;">📝 Form Perjalanan Dinas</h1>
 
-    <form action="{{ route('perjadian.store') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('perjadin.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
 
         <!-- Informasi Pengguna -->

@@ -6,7 +6,7 @@
 <div class="card">
     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
         <h1>📋 Riwayat Perjalanan Dinas</h1>
-        <a href="{{ route('perjadian.create') }}" class="btn btn-primary">+ Form Baru</a>
+        <a href="{{ route('perjadin.create') }}" class="btn btn-primary">+ Form Baru</a>
     </div>
 
     @if ($forms->count() > 0)

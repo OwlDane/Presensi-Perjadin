@@ -132,14 +132,14 @@
 
     <div style="display: flex; gap: 1rem; justify-content: center;">
         @if ($perjadianForm->status === 'draft')
-            <a href="{{ route('perjadian.edit', $perjadianForm) }}" class="btn btn-secondary">Edit</a>
-            <form action="{{ route('perjadian.destroy', $perjadianForm) }}" method="POST" style="display: inline;" onsubmit="return confirm('Yakin ingin menghapus?');">
+            <a href="{{ route('perjadin.edit', $perjadianForm) }}" class="btn btn-secondary">Edit</a>
+            <form action="{{ route('perjadin.destroy', $perjadianForm) }}" method="POST" style="display: inline;" onsubmit="return confirm('Yakin ingin menghapus?');">
                 @csrf
                 @method('DELETE')
                 <button type="submit" class="btn btn-danger">Hapus</button>
             </form>
         @endif
-        <a href="{{ route('perjadian.history') }}" class="btn btn-secondary">Kembali</a>
+        <a href="{{ route('perjadin.history') }}" class="btn btn-secondary">Kembali</a>
     </div>
 </div>
 @endsection

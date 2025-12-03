@@ -6,7 +6,7 @@
 <div class="card">
     <h1 style="margin-bottom: 2rem;">✏️ Edit Perjalanan Dinas</h1>
 
-    <form action="{{ route('perjadian.update', $perjadianForm) }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('perjadin.update', $perjadianForm) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
 
