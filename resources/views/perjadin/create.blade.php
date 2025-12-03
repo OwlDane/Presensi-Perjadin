@@ -89,6 +89,35 @@
                     @enderror
                 </div>
             </div>
+
+            <!-- Pengikut Section -->
+            <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid #eee;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                    <label style="font-weight: bold; margin: 0;">Pengikut</label>
+                    <button type="button" id="addFollowerBtn" class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.875rem;">+ Tambah Pengikut</button>
+                </div>
+
+                <div id="followersContainer">
+                    @php
+                        $followers = old('followers', []);
+                    @endphp
+                    @if (count($followers) > 0)
+                        @foreach ($followers as $index => $follower)
+                            <div class="follower-item" style="display: flex; gap: 0.5rem; margin-bottom: 1rem; align-items: flex-end;">
+                                <div style="flex: 1;">
+                                    <select name="followers[]" class="follower-select" required style="width: 100%; padding: 0.5rem; border: 1px solid #ddd; border-radius: 4px;">
+                                        <option value="">-- Pilih Pengikut --</option>
+                                        @foreach (\App\Models\User::where('role', 'user')->get() as $user)
+                                            <option value="{{ $user->id }}" {{ $follower == $user->id ? 'selected' : '' }}>{{ $user->name }} ({{ $user->nip }})</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <button type="button" class="removeFollowerBtn btn btn-danger" style="padding: 0.5rem 1rem; font-size: 0.875rem;">🗑️ Hapus</button>
+                            </div>
+                        @endforeach
+                    @endif
+                </div>
+            </div>
         </fieldset>
 
         <!-- Lokasi Kegiatan -->
@@ -128,4 +157,53 @@
         </div>
     </form>
 </div>
+
+<script>
+    // Get all users untuk dropdown
+    const allUsers = [
+        @foreach (\App\Models\User::where('role', 'user')->get() as $user)
+            { id: {{ $user->id }}, name: '{{ $user->name }}', nip: '{{ $user->nip }}' },
+        @endforeach
+    ];
+
+    // Tombol tambah pengikut
+    document.getElementById('addFollowerBtn').addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const container = document.getElementById('followersContainer');
+        const followerItem = document.createElement('div');
+        followerItem.className = 'follower-item';
+        followerItem.style.cssText = 'display: flex; gap: 0.5rem; margin-bottom: 1rem; align-items: flex-end;';
+        
+        let optionsHtml = '<option value="">-- Pilih Pengikut --</option>';
+        allUsers.forEach(user => {
+            optionsHtml += `<option value="${user.id}">${user.name} (${user.nip})</option>`;
+        });
+        
+        followerItem.innerHTML = `
+            <div style="flex: 1;">
+                <select name="followers[]" class="follower-select" required style="width: 100%; padding: 0.5rem; border: 1px solid #ddd; border-radius: 4px;">
+                    ${optionsHtml}
+                </select>
+            </div>
+            <button type="button" class="removeFollowerBtn btn btn-danger" style="padding: 0.5rem 1rem; font-size: 0.875rem;">🗑️ Hapus</button>
+        `;
+        
+        container.appendChild(followerItem);
+        
+        // Attach event listener ke tombol hapus baru
+        followerItem.querySelector('.removeFollowerBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            followerItem.remove();
+        });
+    });
+
+    // Event listener untuk tombol hapus yang sudah ada
+    document.querySelectorAll('.removeFollowerBtn').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            this.closest('.follower-item').remove();
+        });
+    });
+</script>
 @endsection

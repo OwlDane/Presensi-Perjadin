@@ -45,6 +45,8 @@ class PerjadianFormController extends Controller
             'surat_kegiatan'   => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:5120',
             'nama_instansi'    => 'required|string',
             'alamat_kegiatan'  => 'required|string',
+            'followers'        => 'nullable|array',
+            'followers.*'      => 'exists:users,id',
         ]);
 
         $user = auth()->user();
@@ -60,6 +62,9 @@ class PerjadianFormController extends Controller
         $validated['nama']    = $user->name;
         $validated['nip']     = $user->nip;
         $validated['status']  = 'submitted';
+        
+        // Simpan pengikut sebagai JSON
+        $validated['pengikut'] = json_encode($request->input('followers', []));
 
         // Simpan ke database
         PerjadianForm::create($validated);
@@ -138,6 +143,8 @@ class PerjadianFormController extends Controller
             'surat_kegiatan'   => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:5120',
             'nama_instansi'    => 'required|string',
             'alamat_kegiatan'  => 'required|string',
+            'followers'        => 'nullable|array',
+            'followers.*'      => 'exists:users,id',
         ]);
 
         // Upload file jika ada
@@ -145,6 +152,9 @@ class PerjadianFormController extends Controller
             $validated['surat_kegiatan'] = $request->file('surat_kegiatan')
                 ->store('perjadian-forms', 'public');
         }
+
+        // Simpan pengikut sebagai JSON
+        $validated['pengikut'] = json_encode($request->input('followers', []));
 
         // Update ke database
         $perjadianForm->update($validated);

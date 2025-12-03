@@ -20,6 +20,7 @@ class PerjadianForm extends Model
         'surat_kegiatan',
         'nama_instansi',
         'alamat_kegiatan',
+        'pengikut',
         'status',
         'catatan_admin',
     ];
@@ -28,6 +29,7 @@ class PerjadianForm extends Model
         'tanggal_surat' => 'date',
         'tanggal_berangkat' => 'date',
         'tanggal_pulang' => 'date',
+        'pengikut' => 'array',
     ];
 
     /**
