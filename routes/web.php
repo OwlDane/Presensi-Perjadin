@@ -27,8 +27,8 @@ Route::middleware('user')->group(function () {
     Route::get('/perjadin/create', [PerjadinFormController::class, 'create'])->name('perjadin.create');
     Route::post('/perjadin', [PerjadinFormController::class, 'store'])->name('perjadin.store');
     Route::get('/perjadin/history', [PerjadinFormController::class, 'history'])->name('perjadin.history');
-    Route::get('/perjadin/{perjadianForm}', [PerjadinFormController::class, 'show'])->name('perjadin.show');
-    Route::get('/perjadin/{perjadianForm}/edit', [PerjadinFormController::class, 'edit'])->name('perjadin.edit');
-    Route::put('/perjadin/{perjadianForm}', [PerjadinFormController::class, 'update'])->name('perjadin.update');
-    Route::delete('/perjadin/{perjadianForm}', [PerjadianFormController::class, 'destroy'])->name('perjadin.destroy');
+    Route::get('/perjadin/{perjadinForm}', [PerjadinFormController::class, 'show'])->name('perjadin.show');
+    Route::get('/perjadin/{perjadinForm}/edit', [PerjadinFormController::class, 'edit'])->name('perjadin.edit');
+    Route::put('/perjadin/{perjadinForm}', [PerjadinFormController::class, 'update'])->name('perjadin.update');
+    Route::delete('/perjadin/{perjadinForm}', [PerjadinFormController::class, 'destroy'])->name('perjadin.destroy');
 });

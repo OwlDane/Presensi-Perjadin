@@ -6,13 +6,13 @@
 <div class="card">
     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
         <h1>📄 Detail Perjalanan Dinas</h1>
-        <span class="badge badge-{{ $perjadianForm->status }}">
-            {{ match($perjadianForm->status) {
+        <span class="badge badge-{{ $perjadinForm->status }}">
+            {{ match($perjadinForm->status) {
                 'draft' => 'Draft',
                 'submitted' => 'Submitted',
                 'approved' => 'Approved',
                 'rejected' => 'Rejected',
-                default => $perjadianForm->status,
+                default => $perjadinForm->status,
             } }}
         </span>
     </div>
@@ -23,11 +23,11 @@
         <div class="form-row">
             <div class="form-group">
                 <label>Nama</label>
-                <input type="text" value="{{ $perjadianForm->nama }}" disabled>
+                <input type="text" value="{{ $perjadinForm->nama }}" disabled>
             </div>
             <div class="form-group">
                 <label>NIP</label>
-                <input type="text" value="{{ $perjadianForm->nip }}" disabled>
+                <input type="text" value="{{ $perjadinForm->nip }}" disabled>
             </div>
         </div>
     </fieldset>
@@ -38,11 +38,11 @@
         <div class="form-row">
             <div class="form-group">
                 <label>Nomor Surat</label>
-                <input type="text" value="{{ $perjadianForm->nomor_surat }}" disabled>
+                <input type="text" value="{{ $perjadinForm->nomor_surat }}" disabled>
             </div>
             <div class="form-group">
                 <label>Tanggal Surat</label>
-                <input type="text" value="{{ $perjadianForm->tanggal_surat->format('d/m/Y') }}" disabled>
+                <input type="text" value="{{ $perjadinForm->tanggal_surat->format('d/m/Y') }}" disabled>
             </div>
         </div>
     </fieldset>
@@ -53,11 +53,11 @@
         <div class="form-row">
             <div class="form-group">
                 <label>Tanggal Berangkat</label>
-                <input type="text" value="{{ $perjadianForm->tanggal_berangkat->format('d/m/Y') }}" disabled>
+                <input type="text" value="{{ $perjadinForm->tanggal_berangkat->format('d/m/Y') }}" disabled>
             </div>
             <div class="form-group">
                 <label>Tanggal Pulang</label>
-                <input type="text" value="{{ $perjadianForm->tanggal_pulang->format('d/m/Y') }}" disabled>
+                <input type="text" value="{{ $perjadinForm->tanggal_pulang->format('d/m/Y') }}" disabled>
             </div>
         </div>
     </fieldset>
@@ -68,11 +68,11 @@
         <div class="form-row">
             <div class="form-group">
                 <label>Nama Kegiatan</label>
-                <input type="text" value="{{ $perjadianForm->nama_kegiatan }}" disabled>
+                <input type="text" value="{{ $perjadinForm->nama_kegiatan }}" disabled>
             </div>
             <div class="form-group">
                 <label>Jenis Kegiatan</label>
-                <input type="text" value="{{ $perjadianForm->jenis_kegiatan === 'dalam_kota' ? 'Dalam Kota' : 'Luar Kota' }}" disabled>
+                <input type="text" value="{{ $perjadinForm->jenis_kegiatan === 'dalam_kota' ? 'Dalam Kota' : 'Luar Kota' }}" disabled>
             </div>
         </div>
     </fieldset>
@@ -82,22 +82,22 @@
         <legend style="padding: 0 0.5rem; font-weight: bold;">Lokasi Kegiatan</legend>
         <div class="form-group">
             <label>Nama Instansi</label>
-            <input type="text" value="{{ $perjadianForm->nama_instansi }}" disabled>
+            <input type="text" value="{{ $perjadinForm->nama_instansi }}" disabled>
         </div>
         <div class="form-group">
             <label>Alamat Kegiatan</label>
-            <textarea disabled>{{ $perjadianForm->alamat_kegiatan }}</textarea>
+            <textarea disabled>{{ $perjadinForm->alamat_kegiatan }}</textarea>
         </div>
     </fieldset>
 
     <!-- Dokumen -->
-    @if ($perjadianForm->surat_kegiatan)
+    @if ($perjadinForm->surat_kegiatan)
         <fieldset style="border: 1px solid #ddd; padding: 1.5rem; border-radius: 4px; margin-bottom: 2rem;">
             <legend style="padding: 0 0.5rem; font-weight: bold;">Dokumen</legend>
             <div class="form-group">
                 <label>Surat Kegiatan</label>
                 <div style="margin-top: 0.5rem;">
-                    <a href="{{ asset('storage/' . $perjadianForm->surat_kegiatan) }}" target="_blank" class="btn btn-primary">
+                    <a href="{{ asset('storage/' . $perjadinForm->surat_kegiatan) }}" target="_blank" class="btn btn-primary">
                         📥 Download File
                     </a>
                 </div>
@@ -106,11 +106,11 @@
     @endif
 
     <!-- Catatan Admin -->
-    @if ($perjadianForm->catatan_admin)
+    @if ($perjadinForm->catatan_admin)
         <fieldset style="border: 1px solid #ddd; padding: 1.5rem; border-radius: 4px; margin-bottom: 2rem;">
             <legend style="padding: 0 0.5rem; font-weight: bold;">Catatan Admin</legend>
             <div style="background-color: #f9f9f9; padding: 1rem; border-radius: 4px;">
-                {{ $perjadianForm->catatan_admin }}
+                {{ $perjadinForm->catatan_admin }}
             </div>
         </fieldset>
     @endif
@@ -121,19 +121,19 @@
         <div class="form-row">
             <div class="form-group">
                 <label>Dibuat Pada</label>
-                <input type="text" value="{{ $perjadianForm->created_at->format('d/m/Y H:i') }}" disabled>
+                <input type="text" value="{{ $perjadinForm->created_at->format('d/m/Y H:i') }}" disabled>
             </div>
             <div class="form-group">
                 <label>Diupdate Pada</label>
-                <input type="text" value="{{ $perjadianForm->updated_at->format('d/m/Y H:i') }}" disabled>
+                <input type="text" value="{{ $perjadinForm->updated_at->format('d/m/Y H:i') }}" disabled>
             </div>
         </div>
     </fieldset>
 
     <div style="display: flex; gap: 1rem; justify-content: center;">
-        @if ($perjadianForm->status === 'draft')
-            <a href="{{ route('perjadin.edit', $perjadianForm) }}" class="btn btn-secondary">Edit</a>
-            <form action="{{ route('perjadin.destroy', $perjadianForm) }}" method="POST" style="display: inline;" onsubmit="return confirm('Yakin ingin menghapus?');">
+        @if ($perjadinForm->status === 'draft')
+            <a href="{{ route('perjadin.edit', $perjadinForm) }}" class="btn btn-secondary">Edit</a>
+            <form action="{{ route('perjadin.destroy', $perjadinForm) }}" method="POST" style="display: inline;" onsubmit="return confirm('Yakin ingin menghapus?');">
                 @csrf
                 @method('DELETE')
                 <button type="submit" class="btn btn-danger">Hapus</button>

@@ -25,6 +25,50 @@
         margin-bottom: 0.5rem;
     }
     
+    /* Style untuk date picker disabled dates */
+    input[type="date"]::-webkit-calendar-picker-indicator {
+        cursor: pointer;
+    }
+    
+    /* Style untuk dates yang disabled di date picker */
+    input[type="date"]:disabled {
+        background-color: #f8f9fa !important;
+        border: 1px solid #e9ecef !important;
+        color: #6c757d !important;
+        cursor: not-allowed !important;
+        opacity: 0.8 !important;
+    }
+    
+    /* Custom styling untuk calendar picker */
+    input[type="date"]::-webkit-datetime-edit-text {
+        color: #495057;
+    }
+    
+    input[type="date"]::-webkit-datetime-edit-month-field {
+        color: #495057;
+    }
+    
+    input[type="date"]::-webkit-datetime-edit-day-field {
+        color: #495057;
+    }
+    
+    input[type="date"]::-webkit-datetime-edit-year-field {
+        color: #495057;
+    }
+    
+    /* Style untuk calendar popup */
+    input[type="date"]::-webkit-calendar-picker-indicator:hover {
+        background-color: #e9ecef;
+        border-radius: 4px;
+    }
+    
+    /* Additional styling untuk better UX */
+    input[type="date"]:focus {
+        outline: none;
+        border-color: #007bff;
+        box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    }
+    
     @media (max-width: 768px) {
         .disabled-input {
             font-size: 0.9rem;
@@ -68,7 +112,7 @@
                 </div>
                 <div class="form-group">
                     <label for="tanggal_surat">Tanggal Surat *</label>
-                    <input type="date" id="tanggal_surat" name="tanggal_surat" value="{{ old('tanggal_surat', $perjadianForm->tanggal_surat->format('Y-m-d')) }}" required>
+                    <input type="date" id="tanggal_surat" name="tanggal_surat" value="{{ old('tanggal_surat', $perjadinForm->tanggal_surat->format('Y-m-d')) }}" required>
                     @error('tanggal_surat')
                         <span style="color: #e74c3c; font-size: 0.875rem;">{{ $message }}</span>
                     @enderror
@@ -82,14 +126,14 @@
             <div class="form-row">
                 <div class="form-group">
                     <label for="tanggal_berangkat">Tanggal Berangkat *</label>
-                    <input type="date" id="tanggal_berangkat" name="tanggal_berangkat" value="{{ old('tanggal_berangkat', $perjadianForm->tanggal_berangkat->format('Y-m-d')) }}" required>
+                    <input type="date" id="tanggal_berangkat" name="tanggal_berangkat" value="{{ old('tanggal_berangkat', $perjadinForm->tanggal_berangkat->format('Y-m-d')) }}" required>
                     @error('tanggal_berangkat')
                         <span style="color: #e74c3c; font-size: 0.875rem;">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="form-group">
                     <label for="tanggal_pulang">Tanggal Pulang *</label>
-                    <input type="date" id="tanggal_pulang" name="tanggal_pulang" value="{{ old('tanggal_pulang', $perjadianForm->tanggal_pulang->format('Y-m-d')) }}" required>
+                    <input type="date" id="tanggal_pulang" name="tanggal_pulang" value="{{ old('tanggal_pulang', $perjadinForm->tanggal_pulang->format('Y-m-d')) }}" required>
                     @error('tanggal_pulang')
                         <span style="color: #e74c3c; font-size: 0.875rem;">{{ $message }}</span>
                     @enderror
@@ -247,5 +291,110 @@
             this.closest('.follower-item').remove();
         });
     });
+
+    // Validasi tanggal pulang tidak boleh sebelum tanggal berangkat
+    function validateDateRange() {
+        const tanggalBerangkat = document.getElementById('tanggal_berangkat');
+        const tanggalPulang = document.getElementById('tanggal_pulang');
+        
+        if (tanggalBerangkat && tanggalPulang) {
+            // Event listener untuk perubahan tanggal berangkat
+            tanggalBerangkat.addEventListener('change', function() {
+                if (this.value) {
+                    // Set min date untuk tanggal pulang
+                    tanggalPulang.min = this.value;
+                    
+                    // Add visual feedback
+                    tanggalPulang.style.backgroundColor = '#fff';
+                    tanggalPulang.style.borderColor = '#ddd';
+                    
+                    // Jika tanggal pulang sudah dipilih dan kurang dari tanggal berangkat, reset
+                    if (tanggalPulang.value && tanggalPulang.value < this.value) {
+                        tanggalPulang.value = '';
+                        tanggalPulang.setCustomValidity('Tanggal pulang harus setelah atau sama dengan tanggal berangkat');
+                        
+                        // Add error styling
+                        tanggalPulang.style.backgroundColor = '#fff5f5';
+                        tanggalPulang.style.borderColor = '#e53e3e';
+                    } else {
+                        tanggalPulang.setCustomValidity('');
+                    }
+                }
+            });
+            
+            // Event listener untuk input event (saat user mengetik)
+            tanggalPulang.addEventListener('input', function() {
+                if (this.value && tanggalBerangkat.value && this.value < tanggalBerangkat.value) {
+                    // Clear invalid input immediately
+                    this.value = '';
+                    this.setCustomValidity('Tanggal pulang harus setelah atau sama dengan tanggal berangkat');
+                    
+                    // Add error styling
+                    this.style.backgroundColor = '#fff5f5';
+                    this.style.borderColor = '#e53e3e';
+                    
+                    // Show browser validation
+                    this.reportValidity();
+                } else {
+                    this.setCustomValidity('');
+                    this.style.backgroundColor = '#fff';
+                    this.style.borderColor = '#ddd';
+                }
+            });
+            
+            // Event listener untuk perubahan tanggal pulang (change event)
+            tanggalPulang.addEventListener('change', function() {
+                if (this.value && tanggalBerangkat.value && this.value < tanggalBerangkat.value) {
+                    // Clear the invalid value
+                    this.value = '';
+                    this.setCustomValidity('Tanggal pulang harus setelah atau sama dengan tanggal berangkat');
+                    
+                    // Add error styling
+                    this.style.backgroundColor = '#fff5f5';
+                    this.style.borderColor = '#e53e3e';
+                    
+                    // Show browser validation message
+                    this.reportValidity();
+                } else {
+                    this.setCustomValidity('');
+                    
+                    // Reset styling
+                    this.style.backgroundColor = '#fff';
+                    this.style.borderColor = '#ddd';
+                }
+            });
+            
+            // Prevent paste of invalid dates
+            tanggalPulang.addEventListener('paste', function(e) {
+                e.preventDefault();
+                
+                // Get pasted data
+                const pastedData = (e.clipboardData || window.clipboardData).getData('text');
+                
+                // Validate pasted date
+                if (pastedData && tanggalBerangkat.value && pastedData < tanggalBerangkat.value) {
+                    this.setCustomValidity('Tanggal pulang harus setelah atau sama dengan tanggal berangkat');
+                    this.style.backgroundColor = '#fff5f5';
+                    this.style.borderColor = '#e53e3e';
+                    this.reportValidity();
+                } else if (pastedData) {
+                    this.value = pastedData;
+                    this.setCustomValidity('');
+                    this.style.backgroundColor = '#fff';
+                    this.style.borderColor = '#ddd';
+                }
+            });
+            
+            // Add hover effect untuk date picker
+            tanggalPulang.addEventListener('mouseenter', function() {
+                if (this.min) {
+                    this.style.cursor = 'pointer';
+                }
+            });
+        }
+    }
+    
+    // Initialize date validation
+    validateDateRange();
 </script>
 @endsection

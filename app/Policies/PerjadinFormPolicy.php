@@ -18,9 +18,9 @@ class PerjadinFormPolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, PerjadianForm $perjadianForm): bool
+    public function view(User $user, PerjadinForm $perjadinForm): bool
     {
-        return $user->id === $perjadianForm->user_id || $user->role === 'admin';
+        return $user->id === $perjadinForm->user_id || $user->role === 'admin';
     }
 
     /**
@@ -34,23 +34,23 @@ class PerjadinFormPolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, PerjadianForm $perjadianForm): bool
+    public function update(User $user, PerjadinForm $perjadinForm): bool
     {
-        return $user->id === $perjadianForm->user_id && $perjadianForm->status === 'draft';
+        return $user->id === $perjadinForm->user_id && $perjadinForm->status === 'draft';
     }
 
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, PerjadianForm $perjadianForm): bool
+    public function delete(User $user, PerjadinForm $perjadinForm): bool
     {
-        return $user->id === $perjadianForm->user_id && $perjadianForm->status === 'draft';
+        return $user->id === $perjadinForm->user_id && $perjadinForm->status === 'draft';
     }
 
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, PerjadianForm $perjadianForm): bool
+    public function restore(User $user, PerjadinForm $perjadinForm): bool
     {
         return false;
     }
@@ -58,7 +58,7 @@ class PerjadinFormPolicy
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, PerjadianForm $perjadianForm): bool
+    public function forceDelete(User $user, PerjadinForm $perjadinForm): bool
     {
         return false;
     }

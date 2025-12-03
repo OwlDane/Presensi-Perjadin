@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\PerjadinForm;
 use Illuminate\Http\Request;
+use Illuminate\Foundation\Auth\Access\Authorizable;
+use Illuminate\Foundation\Validation\ValidatesRequests;
 
 /**
  * PerjadinFormController
@@ -13,6 +15,7 @@ use Illuminate\Http\Request;
  */
 class PerjadinFormController extends Controller
 {
+    use Authorizable, ValidatesRequests;
     /**
      * Menampilkan halaman form perjalanan dinas
      * 
@@ -99,7 +102,10 @@ class PerjadinFormController extends Controller
      */
     public function show(PerjadinForm $perjadinForm)
     {
-        $this->authorize('view', $perjadinForm);
+        // Manual authorization check - user hanya bisa lihat formnya sendiri
+        if ($perjadinForm->user_id !== auth()->id()) {
+            abort(403, 'Unauthorized');
+        }
 
         return view('perjadin.show', compact('perjadinForm'));
     }
@@ -114,7 +120,10 @@ class PerjadinFormController extends Controller
      */
     public function edit(PerjadinForm $perjadinForm)
     {
-        $this->authorize('update', $perjadinForm);
+        // Manual authorization check - user hanya bisa edit formnya sendiri
+        if ($perjadinForm->user_id !== auth()->id()) {
+            abort(403, 'Unauthorized');
+        }
 
         return view('perjadin.edit', compact('perjadinForm'));
     }
@@ -130,7 +139,10 @@ class PerjadinFormController extends Controller
      */
     public function update(Request $request, PerjadinForm $perjadinForm)
     {
-        $this->authorize('update', $perjadinForm);
+        // Manual authorization check - user hanya bisa update formnya sendiri
+        if ($perjadinForm->user_id !== auth()->id()) {
+            abort(403, 'Unauthorized');
+        }
 
         // Validasi input
         $validated = $request->validate([
@@ -173,7 +185,10 @@ class PerjadinFormController extends Controller
      */
     public function destroy(PerjadinForm $perjadinForm)
     {
-        $this->authorize('delete', $perjadinForm);
+        // Manual authorization check - user hanya bisa hapus formnya sendiri
+        if ($perjadinForm->user_id !== auth()->id()) {
+            abort(403, 'Unauthorized');
+        }
 
         $perjadinForm->delete();
 
