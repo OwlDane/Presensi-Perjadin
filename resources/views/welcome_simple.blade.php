@@ -228,7 +228,7 @@
 <body>
     <div class="welcome-container">
         <div class="welcome-header">
-            <h1>📋 Perjalanan Dinas</h1>
+            <h1>Perjalanan Dinas</h1>
             <p>Sistem Manajemen Perjalanan Dinas ASN/Guru</p>
         </div>
 
@@ -280,7 +280,7 @@
                         >
                     </div>
 
-                    <button type="submit" class="login-button">🔐 Login</button>
+                    <button type="submit" class="login-button">Login</button>
                 </form>
             </div>
         @endif
