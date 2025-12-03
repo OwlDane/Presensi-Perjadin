@@ -4,98 +4,112 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Perjalanan Dinas</title>
+    <link rel="stylesheet" href="/css/design-system.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, var(--color-primary-bg) 0%, var(--color-primary-light) 100%);
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
+            padding: var(--spacing-lg);
         }
+
         .login-container {
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-            padding: 3rem;
+            background: var(--color-white);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-xl);
+            padding: var(--spacing-3xl);
             width: 100%;
-            max-width: 400px;
+            max-width: 420px;
         }
+
         .login-header {
             text-align: center;
-            margin-bottom: 2rem;
+            margin-bottom: var(--spacing-2xl);
         }
+
         .login-header h1 {
-            font-size: 2rem;
-            color: #2c3e50;
-            margin-bottom: 0.5rem;
+            font-size: var(--font-size-2xl);
+            color: var(--color-primary-dark);
+            margin-bottom: var(--spacing-sm);
         }
+
         .login-header p {
-            color: #7f8c8d;
-            font-size: 0.95rem;
+            color: var(--color-gray-500);
+            font-size: var(--font-size-sm);
         }
+
         .form-group {
-            margin-bottom: 1.5rem;
+            margin-bottom: var(--spacing-lg);
         }
+
         .form-group label {
             display: block;
-            margin-bottom: 0.5rem;
+            margin-bottom: var(--spacing-sm);
             font-weight: 500;
-            color: #2c3e50;
+            color: var(--color-gray-700);
+            font-size: var(--font-size-sm);
         }
+
         .form-group input {
             width: 100%;
-            padding: 0.75rem;
-            border: 2px solid #ecf0f1;
-            border-radius: 6px;
-            font-size: 1rem;
-            transition: border-color 0.3s;
+            padding: var(--spacing-md) var(--spacing-lg);
+            border: 2px solid var(--color-gray-200);
+            border-radius: var(--radius-md);
+            font-size: var(--font-size-base);
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
         }
+
         .form-group input:focus {
             outline: none;
-            border-color: #667eea;
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
         }
+
         .error-message {
-            color: #e74c3c;
-            font-size: 0.875rem;
-            margin-top: 0.25rem;
+            color: var(--color-error);
+            font-size: var(--font-size-sm);
+            margin-top: var(--spacing-xs);
         }
+
         .alert {
-            background-color: #f8d7da;
-            color: #721c24;
-            padding: 1rem;
-            border-radius: 6px;
-            margin-bottom: 1rem;
-            border: 1px solid #f5c6cb;
+            background-color: #fef2f2;
+            color: #7f1d1d;
+            padding: var(--spacing-lg);
+            border-radius: var(--radius-md);
+            margin-bottom: var(--spacing-lg);
+            border-left: 4px solid var(--color-error);
         }
+
         .btn-login {
             width: 100%;
-            padding: 0.875rem;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
+            padding: var(--spacing-md) var(--spacing-lg);
+            background-color: var(--color-primary);
+            color: var(--color-white);
             border: none;
-            border-radius: 6px;
-            font-size: 1rem;
-            font-weight: 600;
+            border-radius: var(--radius-md);
+            font-size: var(--font-size-base);
+            font-weight: 500;
             cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
+            transition: background-color 0.2s ease;
         }
+
         .btn-login:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+            background-color: var(--color-primary-light);
         }
+
+        .btn-login:active {
+            background-color: var(--color-primary-dark);
+        }
+
         @media (max-width: 480px) {
             .login-container {
-                padding: 2rem;
-                margin: 1rem;
+                padding: var(--spacing-2xl);
             }
+
             .login-header h1 {
-                font-size: 1.5rem;
+                font-size: var(--font-size-xl);
             }
         }
     </style>
@@ -120,7 +134,15 @@
 
             <div class="form-group">
                 <label for="nip">NIP</label>
-                <input type="text" id="nip" name="nip" value="{{ old('nip') }}" required autofocus>
+                <input 
+                    type="text" 
+                    id="nip" 
+                    name="nip" 
+                    value="{{ old('nip') }}" 
+                    required 
+                    autofocus
+                    placeholder="Masukkan NIP Anda"
+                >
                 @error('nip')
                     <div class="error-message">{{ $message }}</div>
                 @enderror
@@ -128,7 +150,14 @@
 
             <div class="form-group">
                 <label for="name">Nama</label>
-                <input type="text" id="name" name="name" value="{{ old('name') }}" required>
+                <input 
+                    type="text" 
+                    id="name" 
+                    name="name" 
+                    value="{{ old('name') }}" 
+                    required
+                    placeholder="Masukkan Nama Anda"
+                >
                 @error('name')
                     <div class="error-message">{{ $message }}</div>
                 @enderror

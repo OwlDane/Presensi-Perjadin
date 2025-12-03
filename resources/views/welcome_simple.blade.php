@@ -4,119 +4,151 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perjalanan Dinas - Home</title>
+    <link rel="stylesheet" href="/css/design-system.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, var(--color-primary-bg) 0%, var(--color-primary-light) 100%);
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 1rem;
+            padding: var(--spacing-lg);
         }
+
         .welcome-container {
-            background: white;
-            border-radius: 16px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            padding: 3rem;
+            background: var(--color-white);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-xl);
+            padding: var(--spacing-3xl);
             width: 100%;
-            max-width: 600px;
+            max-width: 640px;
             text-align: center;
         }
+
         .welcome-header {
-            margin-bottom: 2rem;
+            margin-bottom: var(--spacing-2xl);
         }
+
         .welcome-header h1 {
-            font-size: 2.5rem;
-            color: #2c3e50;
-            margin-bottom: 0.5rem;
+            font-size: var(--font-size-3xl);
+            color: var(--color-primary-dark);
+            margin-bottom: var(--spacing-sm);
         }
+
         .welcome-header p {
-            font-size: 1.1rem;
-            color: #7f8c8d;
+            font-size: var(--font-size-lg);
+            color: var(--color-gray-500);
         }
+
         .button-group {
             display: flex;
-            gap: 1rem;
+            gap: var(--spacing-lg);
             justify-content: center;
             flex-wrap: wrap;
-            margin-bottom: 2rem;
+            margin-bottom: var(--spacing-2xl);
         }
+
         .btn {
             display: inline-block;
-            padding: 0.875rem 2rem;
-            border-radius: 8px;
+            padding: var(--spacing-md) var(--spacing-2xl);
+            border-radius: var(--radius-md);
             text-decoration: none;
             border: none;
             cursor: pointer;
-            font-size: 1rem;
-            font-weight: 600;
-            transition: all 0.3s;
+            font-size: var(--font-size-base);
+            font-weight: 500;
+            transition: all 0.2s ease;
         }
+
         .btn-primary {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
+            background-color: var(--color-primary);
+            color: var(--color-white);
         }
+
         .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+            background-color: var(--color-primary-light);
         }
+
         .btn-secondary {
-            background: #ecf0f1;
-            color: #2c3e50;
+            background-color: var(--color-gray-200);
+            color: var(--color-gray-700);
         }
+
         .btn-secondary:hover {
-            background: #bdc3c7;
-            transform: translateY(-2px);
+            background-color: var(--color-gray-300);
         }
+
         .features {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
-            padding-top: 2rem;
-            border-top: 2px solid #ecf0f1;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-2xl);
+            padding-top: var(--spacing-2xl);
+            border-top: 2px solid var(--color-gray-200);
         }
+
         .feature {
-            padding: 1.5rem;
-            background: #f8f9fa;
-            border-radius: 10px;
-            transition: all 0.3s;
+            padding: var(--spacing-lg);
+            background: var(--color-primary-bg);
+            border-radius: var(--radius-md);
+            transition: all 0.2s ease;
         }
+
         .feature:hover {
-            background: #e8f4f8;
-            transform: translateY(-5px);
+            background: var(--color-gray-50);
+            box-shadow: var(--shadow-md);
         }
+
         .feature-icon {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
+            font-size: var(--font-size-3xl);
+            margin-bottom: var(--spacing-md);
         }
+
         .feature h3 {
-            color: #2c3e50;
-            font-size: 1rem;
-            margin-bottom: 0.5rem;
+            color: var(--color-primary-dark);
+            font-size: var(--font-size-base);
+            margin-bottom: var(--spacing-sm);
         }
+
         .feature p {
-            color: #7f8c8d;
-            font-size: 0.85rem;
+            color: var(--color-gray-600);
+            font-size: var(--font-size-sm);
+            line-height: var(--line-height-normal);
         }
-        @media (max-width: 600px) {
+
+        @media (max-width: 768px) {
             .welcome-container {
-                padding: 2rem;
+                padding: var(--spacing-2xl);
             }
+
             .welcome-header h1 {
-                font-size: 1.8rem;
+                font-size: var(--font-size-2xl);
             }
+
             .button-group {
                 flex-direction: column;
             }
+
             .btn {
                 width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .welcome-container {
+                padding: var(--spacing-lg);
+            }
+
+            .welcome-header h1 {
+                font-size: var(--font-size-xl);
+            }
+
+            .welcome-header p {
+                font-size: var(--font-size-base);
+            }
+
+            .features {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -124,7 +156,7 @@
 <body>
     <div class="welcome-container">
         <div class="welcome-header">
-            <h1>📋 Perjadin</h1>
+            <h1>📋 Perjalanan Dinas</h1>
             <p>Sistem Manajemen Perjalanan Dinas ASN/Guru</p>
         </div>
 
