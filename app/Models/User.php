@@ -19,8 +19,9 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
-        'email',
+        'nip',
         'password',
+        'role',
     ];
 
     /**
@@ -41,8 +42,15 @@ class User extends Authenticatable
     protected function casts(): array
     {
         return [
-            'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    /**
+     * Get the perjadian forms for the user.
+     */
+    public function perjadianForms()
+    {
+        return $this->hasMany(PerjadianForm::class);
     }
 }
